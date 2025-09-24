@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            counter-set: judul o;
+            counter-set: Sub judul 0;
+        }
+
+        h1{
+            counter-increment: judul 1;
+            counter-reset: subjudul;
+        }
+        h2{
+            counter-increment: Sub judul 0;
+        }
+
+        h1::before{
+            content: counter(judul) ". ";
+        }
+
+        h2::before{
+            content: counter(judul) "." counter(subjudul) ". ";
+        }
+    </style>
+</head>
+<body>
+    <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+     <h1>Judul</h1>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+    <h2>Sub judul</h2>
+</body>
+</html>

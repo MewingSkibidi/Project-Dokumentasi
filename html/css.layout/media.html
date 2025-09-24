@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .main-content h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-content p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .sidebar h2 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .sidebar-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover {
+            transform: translateX(5px);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.1);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        /* ===== MEDIA QUERIES ===== */
+
+        /* Large Desktop (1200px and up) */
+        @media screen and (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .main-content h1 {
+                font-size: 3rem;
+            }
+            
+            .cards {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Desktop (992px to 1199px) */
+        @media screen and (max-width: 1199px) and (min-width: 992px) {
+            .container {
+                max-width: 100%;
+                padding: 15px;
+            }
+            
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Tablet (768px to 991px) */
+        @media screen and (max-width: 991px) and (min-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .nav-menu a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .main-content h1 {
+                font-size: 2rem;
+            }
+            
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        /* Mobile Large (576px to 767px) */
+        @media screen and (max-width: 767px) and (min-width: 576px) {
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu a {
+                color: #333;
+                padding: 0.8rem;
+                text-align: center;
+                border-radius: 8px;
+            }
+            
+            .nav-menu a:hover {
+                background: rgba(102, 126, 234, 0.1);
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1.5rem;
+            }
+            
+            .main-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Small (up to 575px) */
+        @media screen and (max-width: 575px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 0 0 15px 15px;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .nav-menu a {
+                color: #333;
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .main-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .main-content p {
+                font-size: 1rem;
+            }
+            
+            .sidebar {
+                padding: 1rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .cards {
+                gap: 1rem;
+            }
+        }
+
+        /* Extra Small Mobile (up to 375px) */
+        @media screen and (max-width: 375px) {
+            .container {
+                padding: 5px;
+            }
+            
+            .main-content h1 {
+                font-size: 1.3rem;
+            }
+            
+            .main-content p {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 0.8rem;
+            }
+            
+            .sidebar-item {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape Orientation untuk Mobile */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+            .main-content h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .main-content p {
+                margin-bottom: 0.5rem;
+            }
+            
+            .content {
+                gap: 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            header, footer {
+                background: none;
+                color: black;
+                box-shadow: none;
+            }
+            
+            .nav-menu, .hamburger {
+                display: none;
+            }
+            
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="nav">
+                <div class="logo">ResponsiveWeb</div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </header>
+
+        <div class="content">
+            <main class="main-content">
+                <h1>Media Queries Demo</h1>
+                <p>Selamat datang di demonstrasi media queries! Website ini akan berubah tampilan sesuai dengan ukuran layar perangkat Anda.</p>
+                <p>Coba ubah ukuran browser atau buka di perangkat yang berbeda untuk melihat bagaimana layout berubah secara responsif.</p>
+                <p>Media queries memungkinkan kita untuk membuat design yang optimal untuk desktop, tablet, dan mobile dengan pengalaman pengguna yang terbaik di setiap perangkat.</p>
+            </main>
+
+            <aside class="sidebar">
+                <h2>Quick Links</h2>
+                <div class="sidebar-item">📱 Mobile First</div>
+                <div class="sidebar-item">💻 Desktop Ready</div>
+                <div class="sidebar-item">📊 Responsive Grid</div>
+                <div class="sidebar-item">🎨 Modern Design</div>
+            </aside>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>🖥️ Desktop</h3>
+                <p>Layout dengan 4 kolom untuk layar besar, navigation horizontal, dan spacing yang luas.</p>
+            </div>
+            <div class="card">
+                <h3>💻 Laptop</h3>
+                <p>Layout dengan 3 kolom, navigation yang lebih compact, optimal untuk layar medium.</p>
+            </div>
+            <div class="card">
+                <h3>📱 Tablet</h3>
+                <p>Layout 2 kolom dengan sidebar yang pindah ke bawah, touch-friendly interface.</p>
+            </div>
+            <div class="card">
+                <h3>📞 Mobile</h3>
+                <p>Layout single column dengan hamburger menu, dioptimalkan untuk layar kecil.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger
+            const spans = hamburger.querySelectorAll('span');
+            if (navMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+
+        // Display current screen size for demo purposes
+        function displayScreenSize() {
+            const width = window.innerWidth;
+            let device = '';
+            
+            if (width >= 1200) device = 'Large Desktop';
+            else if (width >= 992) device = 'Desktop';
+            else if (width >= 768) device = 'Tablet';
+            else if (width >= 576) device = 'Mobile Large';
+            else if (width >= 375) device = 'Mobile';
+            else device = 'Mobile Small';
+            
+            console.log(`Screen width: ${width}px - Device: ${device}`);
+        }
+
+        window.addEventListener('resize', displayScreenSize);
+        displayScreenSize();
+    </script>
+</body>
+</html>

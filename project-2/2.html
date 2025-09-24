@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Layout - Panduan Lengkap untuk Pemula | SigmaWebsite</title>
+    <style>
+        :root {
+            /* Light mode colors */
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --shadow: rgba(0,0,0,0.1);
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --code-bg: #f4f4f4;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --border-color: #333333;
+            --shadow: rgba(0,0,0,0.3);
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --code-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Article */
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .article-header {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            color: var(--gradient-start);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--gradient-start);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .article-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .article-content h2 {
+            color: var(--gradient-start);
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            border-left: 4px solid var(--gradient-start);
+            padding-left: 1rem;
+        }
+
+        .article-content h3 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: attr(data-language);
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            background: var(--gradient-start);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .code-block code {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        /* Demo Sections */
+        .demo-section {
+            background: var(--bg-primary);
+            border: 2px dashed var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .demo-title {
+            color: var(--gradient-start);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        /* Grid Examples */
+        .grid-demo {
+            display: grid;
+            gap: 10px;
+            margin: 1rem 0;
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .grid-3col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .grid-layout {
+            grid-template-areas: 
+                "header header header"
+                "sidebar main main"
+                "footer footer footer";
+            grid-template-columns: 200px 1fr 1fr;
+            grid-template-rows: 60px 1fr 60px;
+        }
+
+        .header-area { grid-area: header; }
+        .sidebar-area { grid-area: sidebar; }
+        .main-area { grid-area: main; }
+        .footer-area { grid-area: footer; }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 2rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Image Styles */
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Interactive Examples */
+        .interactive-demo {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-btn {
+            background: var(--gradient-start);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .demo-btn:hover {
+            background: #5a67d8;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .toc h3 {
+            color: var(--gradient-start);
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: var(--gradient-start);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .grid-layout {
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main"
+                    "footer";
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/project-2/index.html" class="logo">SigmaCode</a>
+                <div class="nav-right">
+                    <a href="/project-2/index.html" class="back-btn">Home</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article -->
+    <div class="article-container">
+        <!-- Article Header -->
+        <header class="article-header">
+            <h1 class="article-title">CSS Grid Layout - Panduan Lengkap untuk Pemula</h1>
+            <div class="article-meta">
+                <span>📅 15 Januari 2024</span>
+                <span>👤 SabilSigma</span>
+                <span>📂 CSS</span>
+                <span>⏱️ 15 menit baca</span>
+            </div>
+            <div class="article-tags">
+                <span class="tag">CSS</span>
+                <span class="tag">Grid</span>
+                <span class="tag">Layout</span>
+                <span class="tag">Responsive</span>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📋 Daftar Isi</h3>
+            <ul>
+                <li><a href="#pengenalan">1. Pengenalan CSS Grid Layout</a></li>
+                <li><a href="#konsep-dasar">2. Konsep Dasar Grid</a></li>
+                <li><a href="#properti-container">3. Properti Grid Container</a></li>
+                <li><a href="#properti-items">4. Properti Grid Items</a></li>
+                <li><a href="#contoh-praktis">5. Contoh Praktis</a></li>
+                <li><a href="#responsive">6. Membuat Layout Responsive</a></li>
+                <li><a href="#tips">7. Tips dan Best Practices</a></li>
+            </ul>
+        </div>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <section id="pengenalan">
+                <h2>🚀 Pengenalan CSS Grid Layout</h2>
+                
+                <p>CSS Grid Layout adalah sistem tata letak dua dimensi yang revolusioner dalam dunia web development. Berbeda dengan Flexbox yang bekerja dalam satu dimensi (baik horizontal atau vertikal), CSS Grid memungkinkan kita untuk mengatur elemen dalam dua dimensi sekaligus - baris dan kolom.</p>
+
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/jV8B24rSN5o" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Video tutorial CSS Grid Layout untuk pemula</p>
+
+                <p>Grid Layout memberikan kontrol yang sangat presisi dalam mengatur posisi elemen-elemen di halaman web. Dengan Grid, kita bisa membuat layout yang kompleks dengan kode yang lebih sederhana dan mudah dipahami.</p>
+
+                <h3>🎯 Keunggulan CSS Grid:</h3>
+                <ul>
+                    <li><strong>Kontrol 2D:</strong> Mengatur elemen dalam baris dan kolom sekaligus</li>
+                    <li><strong>Fleksibilitas:</strong> Mudah membuat layout yang responsif</li>
+                    <li><strong>Kesederhanaan:</strong> Kode yang lebih bersih dan mudah dipahami</li>
+                    <li><strong>Kekuatan:</strong> Dapat menangani layout yang sangat kompleks</li>
+                </ul>
+            </section>
+
+            <section id="konsep-dasar">
+                <h2>📐 Konsep Dasar Grid</h2>
+                
+                <p>Sebelum mulai coding, penting untuk memahami terminologi dan konsep dasar dalam CSS Grid:</p>
+
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop" alt="CSS Grid Terminology" class="article-image">
+                <p class="image-caption">Ilustrasi terminologi CSS Grid Layout</p>
+
+                <h3>🔑 Terminologi Penting:</h3>
+                <ul>
+                    <li><strong>Grid Container:</strong> Elemen parent yang memiliki <code>display: grid</code></li>
+                    <li><strong>Grid Items:</strong> Elemen-elemen child dari grid container</li>
+                    <li><strong>Grid Lines:</strong> Garis-garis yang membagi grid (horizontal dan vertikal)</li>
+                    <li><strong>Grid Tracks:</strong> Ruang antara dua grid lines (baris atau kolom)</li>
+                    <li><strong>Grid Cells:</strong> Ruang yang dibentuk oleh perpotongan baris dan kolom</li>
+                    <li><strong>Grid Areas:</strong> Kumpulan grid cells yang membentuk area persegi</li>
+                </ul>
+
+                <div class="demo-section">
+                    <div class="demo-title">🎨 Visualisasi Grid Dasar</div>
+                    <div class="grid-demo grid-3col">
+                        <div class="grid-item">Item 1</div>
+                        <div class="grid-item">Item 2</div>
+                        <div class="grid-item">Item 3</div>
+                        <div class="grid-item">Item 4</div>
+                        <div class="grid-item">Item 5</div>
+                        <div class="grid-item">Item 6</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="properti-container">
+                <h2>🏗️ Properti Grid Container</h2>
+                
+                <p>Grid container adalah elemen parent yang mengontrol layout grid. Berikut adalah properti-properti penting yang bisa digunakan:</p>
+
+                <h3>1. display: grid</h3>
+                <p>Properti pertama yang harus didefinisikan untuk membuat grid container:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.container {
+    display: grid;
+}</code>
+                </div>
+
+                <h3>2. grid-template-columns & grid-template-rows</h3>
+                <p>Mendefinisikan ukuran kolom dan baris dalam grid:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Membuat 3 kolom dengan lebar yang sama */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* atau bisa ditulis: */
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Membuat kolom dengan ukuran berbeda */
+.container {
+    grid-template-columns: 200px 1fr 100px;
+    grid-template-rows: 100px 200px;
+}</code>
+                </div>
+
+                <div class="interactive-demo">
+                    <div class="demo-controls">
+                        <button class="demo-btn" onclick="changeGridColumns('1fr 1fr 1fr')">3 Kolom Sama</button>
+                        <button class="demo-btn" onclick="changeGridColumns('200px 1fr 100px')">Kolom Berbeda</button>
+                        <button class="demo-btn" onclick="changeGridColumns('repeat(4, 1fr)')">4 Kolom</button>
+                    </div>
+                    <div class="grid-demo" id="demoGrid" style="grid-template-columns: 1fr 1fr 1fr;">
+                        <div class="grid-item">A</div>
+                        <div class="grid-item">B</div>
+                        <div class="grid-item">C</div>
+                        <div class="grid-item">D</div>
+                        <div class="grid-item">E</div>
+                        <div class="grid-item">F</div>
+                    </div>
+                </div>
+
+                <h3>3. gap (grid-gap)</h3>
+                <p>Mengatur jarak antara grid items:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* jarak 20px untuk semua arah */
+    /* atau */
+    gap: 20px 10px; /* 20px vertikal, 10px horizontal */
+}</code>
+                </div>
+
+                <h3>4. grid-template-areas</h3>
+                <p>Cara yang sangat intuitif untuk mendefinisikan layout dengan nama area:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 1fr;
+    grid-template-rows: 60px 1fr 60px;
+    gap: 10px;
+}</code>
+                </div>
+
+                <div class="demo-section">
+                    <div class="demo-title">🏛️ Contoh Layout dengan Grid Areas</div>
+                    <div class="grid-demo grid-layout" style="height: 300px;">
+                        <div class="grid-item header-area">Header</div>
+                        <div class="grid-item sidebar-area">Sidebar</div>
+                        <div class="grid-item main-area">Main Content</div>
+                        <div class="grid-item footer-area">Footer</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="properti-items">
+                <h2>🎯 Properti Grid Items</h2>
+                
+                <p>Grid items adalah elemen-elemen child yang bisa diposisikan dalam grid dengan berbagai cara:</p>
+
+                <h3>1. grid-column & grid-row</h3>
+                <p>Mengatur posisi item berdasarkan garis grid:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.item1 {
+    grid-column: 1 / 3; /* dari garis 1 sampai 3 */
+    grid-row: 1 / 2;
+}
+
+/* Shorthand */
+.item2 {
+    grid-column: span 2; /* span 2 kolom */
+    grid-row: span 1;
+}</code>
+                </div>
+
+                <h3>2. grid-area</h3>
+                <p>Menempatkan item ke area yang sudah didefinisikan:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }</code>
+                </div>
+
+                <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=400&fit=crop" alt="CSS Grid Areas" class="article-image">
+                <p class="image-caption">Visualisasi grid areas dalam layout web</p>
+            </section>
+
+            <section id="contoh-praktis">
+                <h2>💡 Contoh Praktis</h2>
+                
+                <p>Mari kita buat contoh website sederhana menggunakan CSS Grid:</p>
+
+                <div class="code-block" data-language="HTML">
+                    <code>&lt;div class="website-container"&gt;
+    &lt;header class="header"&gt;Header&lt;/header&gt;
+    &lt;nav class="navigation"&gt;Navigation&lt;/nav&gt;
+    &lt;main class="content"&gt;Main Content&lt;/main&gt;
+    &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+    &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code>
+                </div>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.website-container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "nav content sidebar"
+        "footer footer footer";
+    grid-template-columns: 200px 1fr 250px;
+    grid-template-rows: 80px 1fr 60px;
+    min-height: 100vh;
+    gap: 10px;
+}
+
+.header { grid-area: header; background: #667eea; }
+.navigation { grid-area: nav; background: #764ba2; }
+.content { grid-area: content; background: #f093fb; }
+.sidebar { grid-area: sidebar; background: #4facfe; }
+.footer { grid-area: footer; background: #43e97b; }</code>
+                </div>
+
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/EiNiSFIPIQE" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Tutorial praktek membuat layout website dengan CSS Grid</p>
+            </section>
+
+            <section id="responsive">
+                <h2>📱 Membuat Layout Responsive</h2>
+                
+                <p>CSS Grid sangat powerful untuk membuat layout responsive. Kita bisa menggunakan media queries untuk mengubah grid template:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Desktop */
+.container {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+    grid-template-columns: 250px 1fr 1fr;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "header header"
+            "main main"
+            "sidebar sidebar"
+            "footer footer";
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .container {
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}</code>
+                </div>
+
+                <h3>🔧 Fungsi Auto-fit dan Auto-fill</h3>
+                <p>Untuk membuat grid yang benar-benar responsif tanpa media queries:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Grid akan menyesuaikan jumlah kolom berdasarkan lebar container */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}</code>
+                </div>
+
+                <img src="https://images.unsplash.com/photo-1559028006-448665bd7c7f?w=800&h=400&fit=crop" alt="Responsive Design" class="article-image">
+                <p class="image-caption">Implementasi responsive design dengan CSS Grid</p>
+            </section>
+
+            <section id="tips">
+                <h2>💎 Tips dan Best Practices</h2>
+                
+                <h3>1. Gunakan fr Unit</h3>
+                <p>Unit <code>fr</code> (fraction) sangat berguna untuk membuat kolom yang fleksibel:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Lebih fleksibel daripada persentase */
+.container {
+    grid-template-columns: 1fr 2fr 1fr; /* kolom tengah 2x lebih besar */
+}</code>
+                </div>
+
+                <h3>2. Kombinasikan dengan Flexbox</h3>
+                <p>Grid untuk layout utama, Flexbox untuk komponen kecil:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}</code>
+                </div>
+
+                <h3>3. Manfaatkan Grid DevTools</h3>
+                <p>Browser modern memiliki DevTools yang sangat membantu untuk debugging grid layout. Chrome dan Firefox menyediakan visualisasi grid yang sangat berguna.</p>
+
+                <h3>4. Fallback untuk Browser Lama</h3>
+                <p>Selalu sediakan fallback untuk browser yang belum support grid:</p>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Fallback */
+.item {
+    float: left;
+    width: 33.33%;
+}
+
+/* Grid untuk browser modern */
+@supports (display: grid) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .item {
+        float: none;
+        width: auto;
+    }
+}</code>
+                </div>
+
+              
+
+                <p><strong>Yang perlu diingat:</strong></p>
+                <ul>
+                    <li>Grid cocok untuk layout 2D (baris dan kolom)</li>
+                    <li>Gunakan grid-template-areas untuk layout yang mudah dipahami</li>
+                    <li>Kombinasikan dengan media queries untuk responsive design</li>
+                    <li>Jangan lupa fallback untuk browser lama</li>
+                    <li>Manfaatkan DevTools untuk debugging</li>
+                </ul>
+
+               
+            </section>
+        </article>
+    </div>
+
+    <script>

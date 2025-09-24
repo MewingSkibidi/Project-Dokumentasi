@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        .konten{
+            background-color: bisque;
+            display: inline-block;
+            width: 200px;
+            height: auto;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .flex-box-container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .konten1,.konten2,.konten3{
+            background-color: blueviolet;
+            border: 2px solid black;
+            padding: 20px;
+            margin: 20px;      
+        }
+
+        .wrap-container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap-reverse;
+        }
+
+        .content1,.content2,.content3{
+            width: 300px;
+            background-color: blanchedalmond;
+            border: 2px solid black;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .flex-item-container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-item{
+            background-color: burlywood;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid black;
+            border-radius: 20px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="konten">
+        <h1>Ini Judul 1</h1>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eos pariatur, distinctio reprehenderit cumque, perspiciatis quas veniam dignissimos quam voluptatum aspernatur? Dolores deserunt repellendus voluptas minus ut odit recusandae dolorum.</p>
+    </div>
+
+    <div class="konten">
+        <h1>Ini judul 2</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut eos pariatur, distinctio reprehenderit cumque, perspiciatis quas veniam dignissimos quam voluptatum aspernatur? Dolores deserunt repellendus voluptas minus ut odit recusandae dolorum.
+    </div>
+
+
+               <!-- flexbox  -->
+   <div class="flex-box-container">
+    <div class="konten1">
+        <h1>Judul 1 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+    <div class="konten2">
+        <h1>Judul 2 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+    <div class="konten3">
+        <h1>Judul 3 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+   </div>
+
+   <!-- wrap  -->
+
+   <div class="wrap-container">
+    <div class="content1">
+        <h1>Judul 1 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+    <div class="content2">
+        <h1>Judul 2 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+    <div class="content3">
+        <h1>Judul 3 </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+   </div>
+
+
+   <!-- order  -->
+
+   <div class="flex-item-container">
+    <div class="flex-item" style="order: 2;">
+        <h1>Judul Sigma 1</h1>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+
+    <div class="flex-item" style="order: 3;">
+        <h1>Judul Sigma 2</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div> 
+
+      <div class="flex-item" style="order: 1;">
+        <h1>Judul Sigma 3</h1>
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, delectus! Tenetur ratione cum iure praesentium repudiandae magni amet libero, iusto nostrum a accusantium in accusamus tempore nulla recusandae ullam molestiae!</p>
+    </div>
+
+    </div>
+ 
+ 
+</body>
+</html>

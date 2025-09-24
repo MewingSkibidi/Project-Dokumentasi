@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid-Template</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: 200px auto 200px;
+            grid-template-rows: 500px auto;
+        }
+
+        .content{
+            background-color: antiquewhite;
+            border: 1px solid black;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .isi{
+            display: grid;
+            border: 1px solid black;
+            border-radius: 15px;
+            background-color: bisque;
+            width: 50%;
+            height: 50%;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Sigma 1</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus totam facere ab voluptatem recusandae corporis error aspernatur exercitationem, impedit reprehenderit voluptatibus, vel eaque! Dolorum totam illo vero nesciunt rerum aut.</p>
+        </div>
+        <div class="content">
+            <h1>Sigma 2</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus totam facere ab voluptatem recusandae corporis error aspernatur exercitationem, impedit reprehenderit voluptatibus, vel eaque! Dolorum totam illo vero nesciunt rerum aut.</p>
+        </div>
+        <div class="content">
+            <h1>Sigma 3</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus totam facere ab voluptatem recusandae corporis error aspernatur exercitationem, impedit reprehenderit voluptatibus, vel eaque! Dolorum totam illo vero nesciunt rerum aut.</p>
+        </div>
+        <div class="content">
+            <h1>Sigma 4</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus totam facere ab voluptatem recusandae corporis error aspernatur exercitationem, impedit reprehenderit voluptatibus, vel eaque! Dolorum totam illo vero nesciunt rerum aut.</p>
+        </div>
+        <div class="content">
+            <h1>Sigma 5</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus totam facere ab voluptatem recusandae corporis error aspernatur exercitationem, impedit reprehenderit voluptatibus, vel eaque! Dolorum totam illo vero nesciunt rerum aut.</p>
+        </div>
+    </div>
+
+    <div class="catatan">
+        <div class="isi">
+            <p> grid-template-columns: 200px auto 200px; <i>Yang Di Tengah Auto=Sisanya </i></p>
+            <p>grid-template-rows: 500px auto; <i>Yang dibawah Auto</i></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gird-template-area</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: 100px auto 100px;
+            grid-template-rows: 50px auto 100px;
+            grid-template-areas: 
+            "header header header"
+            ".content."
+            "footer footer footer";
+        }
+
+        .content{
+            background-color: antiquewhite;
+            padding: 20px;
+            margin: 20px;
+            grid-area: content;
+        }
+
+        .footer{
+            background-color: aquamarine;
+            grid-area: footer;
+        }
+
+        .header {
+            border: 2px solid black;
+            border-radius: 10px;
+            background-color: antiquewhite;
+            grid-area: header;
+        }
+
+    </style>
+ </head>
+<body>
+ <div class="container">
+    <div class="header">
+        Selamat Datang Di Sigma Sigma Sigma Boy
+     </div>
+     <div class="content">
+        <h1>Sigma Website</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique tenetur sit delectus molestiae. Cum quae obcaecati rerum voluptatibus harum maiores cumque necessitatibus provident quas, amet est sunt totam tempora.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique tenetur sit delectus molestiae. Cum quae obcaecati rerum voluptatibus harum maiores cumque necessitatibus provident quas, amet est sunt totam tempora.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique tenetur sit delectus molestiae. Cum quae obcaecati rerum voluptatibus harum maiores cumque necessitatibus provident quas, amet est sunt totam tempora.</p>
+     </div>
+     <div class="footer">
+        Develop With Love by Sigma Boy
+    </div>
+ </div>
+</body>
+</html>
