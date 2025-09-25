@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,6 +77,10 @@
             color: white;
         }
 
+        [data-theme="light"] .logo {
+            color: var(--logo-color, #fff)
+        }
+
         .nav-right {
             display: flex;
             align-items: center;
@@ -96,11 +100,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
         }
 
         .back-btn {
@@ -109,11 +114,12 @@
             padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .back-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
 
         /* Article */
@@ -447,7 +453,7 @@
         }
     </style>
 </head>
-<body data-theme="dark">
+<body>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -455,6 +461,9 @@
                 <a href="/project-2/index.html" class="logo">SigmaCode</a>
                 <div class="nav-right">
                     <a href="/project-2/index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -1265,19 +1274,34 @@ body::before {
     </div>
 
     <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            }
-        }
+     // Theme toggle universal & sinkron
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement; // <html>
+
+    // Ambil theme dari localStorage, default 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        // (Opsional) animasi
+        themeToggle.classList.add('animasi');
+        setTimeout(() => {
+            themeToggle.classList.remove('animasi');
+        }, 500);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+
 
         // Viewport simulator
         function changeViewport(size) {
@@ -1357,16 +1381,6 @@ body::before {
             // Show current breakpoint on load and resize
             showCurrentBreakpoint();
             window.addEventListener('resize', showCurrentBreakpoint);
-            
-            // Initialize theme based on user preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                document.querySelector('.theme-toggle').textContent = '☀️';
-            }
         });
     </script>
 </body>

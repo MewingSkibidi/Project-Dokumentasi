@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigmaCode - About</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">SigmaCode</a>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/project-2/HTML.html">HTML</a></li>
+                    <li><a href="/project-2/CSS.html">CSS</a></li>
+                    <li><a href="/project-2/java.html">JavaScript</a></li>
+                    <li><a href="/project-2/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="posts-section">
+        <h1 class="page-title">Tentang SigmaCode</h1>
+        <div class="no-results" id="noResults" style="display: none;"></div>
+        
+        <div class="about-content">
+            <p>
+                Website ini dikembangkan sebagai sarana dokumentasi sekaligus media pembelajaran dalam memahami proses pembuatan project sederhana berbasis web. Dalam era digital saat ini, dokumentasi memiliki peran yang sangat penting, tidak hanya sebagai catatan perkembangan project, tetapi juga sebagai bentuk komunikasi yang menjelaskan konsep, struktur, serta langkah-langkah teknis yang dilakukan oleh pembuat project. Oleh karena itu, situs ini hadir untuk memberikan gambaran yang jelas dan terarah mengenai bagaimana sebuah project dirancang, dibangun, dan dijalankan.
+            </p>
+
+            <p>
+                Tujuan utama dari website ini adalah menyediakan informasi yang terstruktur mengenai project yang sedang dikembangkan. Mulai dari latar belakang pembuatan, fitur-fitur utama yang dihadirkan, instruksi instalasi, hingga panduan penggunaan yang mudah dipahami. Dengan adanya dokumentasi yang tersusun dengan baik, pembaca diharapkan tidak hanya memahami cara menggunakan project ini, tetapi juga memperoleh wawasan tambahan mengenai logika, metode, dan teknologi yang digunakan dalam proses pengembangan.
+            </p>
+
+            <p>
+                Website ini juga memiliki nilai tambah sebagai sumber pengetahuan yang dapat diakses secara bebas. Bagi pembuat project, situs ini berfungsi sebagai catatan pribadi yang merekam perjalanan belajar, termasuk kesulitan yang dihadapi, solusi yang ditemukan, serta hasil akhir yang dicapai. Bagi pembaca atau pengguna lain, situs ini bisa menjadi referensi yang bermanfaat dalam mempelajari dasar-dasar pengembangan web maupun sebagai inspirasi untuk mengembangkan project serupa. Dengan kata lain, situs ini tidak hanya bersifat informatif, tetapi juga edukatif.
+            </p>
+
+            <p>
+                Dari sisi desain, website ini dibangun dengan pendekatan yang sederhana namun tetap memperhatikan keterbacaan dan kerapian. Elemen-elemen yang ada ditata sedemikian rupa agar mudah diikuti, dengan pembagian bagian yang jelas seperti pengenalan, fitur, instalasi, penggunaan, hingga bagian kontak. Hal ini bertujuan untuk menciptakan pengalaman membaca yang teratur, sehingga pembaca tidak kesulitan dalam menemukan informasi yang mereka butuhkan.
+            </p>
+
+            <p>
+                Lebih dari itu, pembuatan situs ini juga mencerminkan filosofi bahwa setiap langkah kecil dalam belajar adalah fondasi yang berharga untuk mencapai kemampuan yang lebih besar. Meskipun project ini tergolong sederhana, dokumentasi yang menyertainya diharapkan dapat menunjukkan keseriusan, kedisiplinan, serta komitmen dalam belajar. Harapan jangka panjangnya, situs ini bisa terus dikembangkan seiring bertambahnya pengalaman dan pengetahuan, sehingga menjadi dokumentasi yang lebih matang dan bermanfaat dalam lingkup yang lebih luas.
+            </p>
+
+            <p>
+                Pada akhirnya, website ini bukan hanya sekadar media dokumentasi project, melainkan juga sebuah bentuk dedikasi dari seorang pelajar SMK kelas 10 yang sedang menapaki perjalanan awal dalam dunia teknologi informasi. Dengan segala keterbatasan yang ada, situs ini menjadi bukti nyata bahwa semangat belajar dan kemauan untuk berkembang mampu menghasilkan karya yang dapat diapresiasi, sekaligus menjadi pijakan untuk karya-karya selanjutnya di masa depan.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Theme toggle sinkron
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        root.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+
+            themeToggle.classList.add('animasi');
+            setTimeout(() => {
+                themeToggle.classList.remove('animasi');
+            }, 500);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+        }
+
+        // Hamburger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

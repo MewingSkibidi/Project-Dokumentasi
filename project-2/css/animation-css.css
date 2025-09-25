@@ -1,4 +1,4 @@
-   :root {
+    :root {
             /* Light mode colors */
             --bg-primary: #f8f9fa;
             --bg-secondary: #ffffff;
@@ -88,7 +88,7 @@
             gap: 1rem;
         }
 
-        .theme-toggle {
+            .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;

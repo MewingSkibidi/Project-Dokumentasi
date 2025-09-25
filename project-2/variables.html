@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,6 @@
         }
 
         [data-theme="dark"] {
-            /* Dark mode variables */
             --bg-primary: #121212;
             --bg-secondary: #1e1e1e;
             --text-primary: #f8f9fa;
@@ -87,11 +86,11 @@
             color: white;
         }
 
-        .theme-toggle {
+         .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            padding: var(--space-sm);
+            padding: 0.5rem;
             border-radius: 50%;
             cursor: pointer;
             font-size: 1.2rem;
@@ -100,24 +99,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
         }
 
-        .back-btn{
+        .back-btn {
             background: rgba(255,255,255,0.2);
             color: white;
             padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
-            .back-btn:hover {
+        .back-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
 
         /* Article */
@@ -299,6 +300,8 @@
                 <a href="/project-2/index.html" class="logo">SigmaCode</a>
                 <div class="nav-right">
                     <a href="/project-2/index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode" onclick="toggleTheme()">
+                        <span class="animasi" id="themeIcon">😎</span>
                 </div>
             </nav>
         </div>
@@ -529,30 +532,49 @@ getComputedStyle(element).getPropertyValue('--var-name');</code>
     </div>
 
     <script>
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            }
-        }
+    // Theme toggle universal & sinkron
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement; // <html>
 
-        // Update CSS variables
-        function updateVar(variable, value) {
-            document.documentElement.style.setProperty(variable, value);
+    // Ambil theme dari localStorage, default 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        // (Opsional) animasi
+        themeToggle.classList.add('animasi');
+        setTimeout(() => {
+            themeToggle.classList.remove('animasi');
+        }, 500);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+
+    // Update CSS variables
+    function updateVar(variable, value) {
+        document.documentElement.style.setProperty(variable, value);
+        if (variable === '--demo-bg') document.getElementById('current-bg').textContent = value;
+        if (variable === '--demo-text') document.getElementById('current-text').textContent = value;
+        if (variable === '--radius-md') document.getElementById('current-radius').textContent = value;
+        if (variable === '--space-md') document.getElementById('current-space').textContent = value;
+    }
             
-            // Update display
+        
             if (variable === '--demo-bg') document.getElementById('current-bg').textContent = value;
             if (variable === '--demo-text') document.getElementById('current-text').textContent = value;
             if (variable === '--radius-md') document.getElementById('current-radius').textContent = value;
             if (variable === '--space-md') document.getElementById('current-space').textContent = value;
-        }
+        
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {

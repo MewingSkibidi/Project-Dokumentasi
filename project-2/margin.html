@@ -1,23 +1,10 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Margiin - Panduan Lengkap untuk Pemula | SigmaWebsite</title>
+    <title>CSS Margin - Panduan Lengkap untuk Pemula | SigmaWebsite</title>
     <style>
-        :root {
-            /* Light mode colors */
-            --bg-primary: #f8f9fa;
-            --bg-secondary: #ffffff;
-            --text-primary: #333333;
-            --text-secondary: #555555;
-            --text-muted: #666666;
-            --border-color: #e0e0e0;
-            --shadow: rgba(0,0,0,0.1);
-            --gradient-start: #667eea;
-            --gradient-end: #764ba2;
-            --code-bg: #f4f4f4;
-        }
 
         [data-theme="dark"] {
             /* Dark mode colors */
@@ -32,6 +19,19 @@
             --gradient-end: #764ba2;
             --code-bg: #2d2d2d;
         }
+
+        [data-theme="light"] {
+    --bg-primary: #fff;
+    --bg-secondary: #f7f7f7;
+    --text-primary: #222;
+    --text-secondary: #444;
+    --text-muted: #888;
+    --border-color: #e0e0e0;
+    --shadow: rgba(0,0,0,0.07);
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    --code-bg: #f3f3f3;
+}
 
         * {
             margin: 0;
@@ -74,7 +74,12 @@
             font-size: 1.8rem;
             font-weight: bold;
             text-decoration: none;
-            color: white;
+            transition: color 0.3s;
+            color: #fff;
+        }
+
+        [data-theme="light"] .logo {
+            color: #fff;
         }
 
         .nav-right {
@@ -83,7 +88,7 @@
             gap: 1rem;
         }
 
-        .theme-toggle {
+    .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
@@ -96,11 +101,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
         }
 
         .back-btn {
@@ -109,11 +115,12 @@
             padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .back-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
 
         /* Article */
@@ -241,8 +248,8 @@
             text-align: center;
         }
 
-        /* Selector Demo Styles */
-        .selector-demo {
+        /* Margin Demo Styles */
+        .margin-demo {
             background: var(--bg-secondary);
             padding: 2rem;
             border-radius: 10px;
@@ -250,18 +257,17 @@
             border: 2px solid var(--border-color);
         }
 
-        .demo-element {
+        .demo-box {
             padding: 1rem;
-            margin: 0.5rem;
-            border-radius: 5px;
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
             text-align: center;
+            border-radius: 5px;
             transition: all 0.3s ease;
         }
 
-        .demo-element:hover {
-            transform: scale(1.05);
+        .demo-box:hover {
+            transform: scale(1.02);
             box-shadow: 0 5px 15px var(--shadow);
         }
 
@@ -300,8 +306,8 @@
             background: var(--gradient-end);
         }
 
-        /* Specificity Table */
-        .specificity-table {
+        /* Margin Values Table */
+        .margin-table {
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
@@ -310,14 +316,14 @@
             overflow: hidden;
         }
 
-        .specificity-table th,
-        .specificity-table td {
+        .margin-table th,
+        .margin-table td {
             padding: 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .specificity-table th {
+        .margin-table th {
             background: var(--gradient-start);
             color: white;
             font-weight: bold;
@@ -412,19 +418,50 @@
             }
         }
 
-        /* Example Elements for Selector Demos */
-        .example-p { background: #ff9a9e; }
-        .example-div { background: #a8e6cf; }
-        .highlight { background: #ffd93d !important; }
-        .special { border: 3px solid #ff6b6b; }
+        /* Margin Demo Styles */
+        .margin-example {
+            background: #f0f8ff;
+            border: 2px dashed #667eea;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        [data-theme="dark"] .margin-example {
+            background: #2a2a3a;
+            border-color: #667eea;
+        }
+
+        .margin-10 { margin: 10px; }
+        .margin-20 { margin: 20px; }
+        .margin-top-30 { margin-top: 30px; }
+        .margin-horizontal { margin: 0 40px; }
+        .margin-auto { margin: 0 auto; width: 200px; }
+        .margin-negative { margin: -10px; }
         
-        #unique-element { background: #4ecdc4; }
+        /* Box model visualization */
+        .box-model {
+            border: 3px solid #ff6b6b;
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
         
-        .parent-demo .child { background: #95e1d3; }
-        .parent-demo > .direct-child { border: 2px solid #f38ba8; }
+        .box-model::before {
+            content: "MARGIN";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b6b;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            border-radius: 3px;
+        }
     </style>
 </head>
-<body data-theme="dark">
+<body>
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -432,6 +469,10 @@
                 <a href="/project-2/index.html" class="logo">SigmaCode</a>
                 <div class="nav-right">
                     <a href="/project-2/index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span class="animasi" id="themeIcon">😎</span>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -445,7 +486,7 @@
                 <span>📅 3 September 2025</span>
                 <span>👤 SabilSigma</span>
                 <span>📂 CSS</span>
-                <span>⏱️ 20 menit baca</span>
+                <span>⏱️ 15 menit baca</span>
             </div>
             <div class="article-tags">
                 <span class="tag">CSS</span>
@@ -459,869 +500,713 @@
         <div class="toc">
             <h3>📋 Daftar Isi</h3>
             <ul>
-                <li><a href="#pengenalan">1. Pengenalan CSS Selectors</a></li>
-                <li><a href="#dasar-selectors">2. Selector Dasar</a></li>
-                <li><a href="#selector-kombinasi">3. Selector Kombinasi</a></li>
-                <li><a href="#pseudo-class">4. Pseudo-class Selectors</a></li>
-                <li><a href="#pseudo-element">5. Pseudo-element Selectors</a></li>
-                <li><a href="#specificity">6. Specificity dan Priority</a></li>
-                <li><a href="#tips">7. Tips dan Best Practices</a></li>
+                <li><a href="#pengenalan">1. Pengenalan CSS Margin</a></li>
+                <li><a href="#sintaks-dasar">2. Sintaks Dasar Margin</a></li>
+                <li><a href="#margin-individual">3. Mengatur Margin Individual</a></li>
+                <li><a href="#margin-shorthand">4. Shorthand Margin Properties</a></li>
+                <li><a href="#margin-auto">5. Margin Auto untuk Centering</a></li>
+                <li><a href="#margin-collapse">6. Margin Collapse</a></li>
+                <li><a href="#margin-negatif">7. Margin Negatif</a></li>
+                <li><a href="#tips-praktis">8. Tips dan Best Practices</a></li>
             </ul>
         </div>
 
         <!-- Article Content -->
         <article class="article-content">
             <section id="pengenalan">
-                <h2>🚀 Pengenalan CSS Selectors</h2>
-                <p>CSS Selectors adalah pola yang digunakan untuk memilih elemen HTML yang akan diberi styling. Selector adalah fondasi dari CSS yang memungkinkan kita mengontrol tampilan elemen-elemen spesifik di halaman web.</p>
+                <h2>🚀 Pengenalan CSS Margin</h2>
+                <p>CSS Margin adalah properti yang digunakan untuk mengatur ruang kosong di sekitar elemen HTML. Margin menciptakan jarak antara elemen dengan elemen lainnya, dan merupakan bagian dari box model CSS yang sangat penting untuk layout halaman web.</p>
                 
                 <div class="video-container">
                     <iframe 
-                        src="https://www.youtube.com/embed/l1mER1bV0N0" 
+                        src="https://www.youtube.com/embed/UOvh76tUVJQ" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
                 </div>
-                <p class="image-caption">Video tutorial CSS Selectors untuk pemula</p>
+                <p class="image-caption">Video tutorial CSS Box Model dan Margin untuk pemula</p>
 
-                <p>Dengan CSS Selectors, kita dapat menargetkan elemen berdasarkan nama tag, class, ID, atribut, posisi dalam dokumen, dan banyak kriteria lainnya.</p>
+                <p>Margin berbeda dari padding karena margin adalah ruang di luar border elemen, sedangkan padding adalah ruang di dalam border elemen.</p>
 
-                <h3>🎯 Keunggulan CSS Selectors:</h3>
+                <h3>🎯 Fungsi Utama CSS Margin:</h3>
                 <ul>
-                    <li><strong>Presisi:</strong> Memungkinkan penargetan elemen yang sangat spesifik</li>
-                    <li><strong>Fleksibilitas:</strong> Berbagai cara untuk memilih elemen</li>
-                    <li><strong>Efisiensi:</strong> Satu selector bisa menargetkan banyak elemen</li>
-                    <li><strong>Maintainability:</strong> Mudah diubah dan dikelola</li>
-                    <li><strong>Reusability:</strong> Selector dapat digunakan kembali</li>
+                    <li><strong>Spacing:</strong> Mengatur jarak antar elemen</li>
+                    <li><strong>Layout:</strong> Membantu dalam pengaturan tata letak</li>
+                    <li><strong>Centering:</strong> Memusatkan elemen secara horizontal</li>
+                    <li><strong>Visual Balance:</strong> Menciptakan keseimbangan visual</li>
+                    <li><strong>Responsive Design:</strong> Menyesuaikan spacing di berbagai ukuran layar</li>
                 </ul>
-            </section>
-
-            <section id="dasar-selectors">
-                <h2>📐 Selector Dasar</h2>
-
-                <p>Mari kita pelajari selector-selector dasar yang paling sering digunakan:</p>
-
-                <h3>1. Universal Selector (*)</h3>
-                <p>Memilih semua elemen di halaman:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}</code>
-                </div>
-
-                <h3>2. Element/Type Selector</h3>
-                <p>Memilih semua elemen dengan tag tertentu:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>p {
-    color: blue;
-    font-size: 16px;
-}
-
-h1 {
-    color: red;
-    font-size: 32px;
-}
-
-div {
-    background-color: lightgray;
-    padding: 20px;
-}</code>
-                </div>
 
                 <div class="demo-section">
-                    <div class="demo-title">🎨 Demo Element Selector</div>
-                    <div class="selector-demo">
-                        <p class="demo-element example-p">Paragraf dengan element selector</p>
-                        <div class="demo-element example-div">Div dengan element selector</div>
-                    </div>
-                </div>
-
-                <h3>3. Class Selector (.)</h3>
-                <p>Memilih elemen berdasarkan atribut class:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>.highlight {
-    background-color: yellow;
-    font-weight: bold;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}</code>
-                </div>
-
-                <div class="code-block" data-language="HTML">
-                    <code>&lt;p class="highlight"&gt;Teks yang di-highlight&lt;/p&gt;
-&lt;div class="container"&gt;Container dengan max-width&lt;/div&gt;
-&lt;button class="btn"&gt;Tombol dengan styling&lt;/button&gt;</code>
-                </div>
-
-                <h3>4. ID Selector (#)</h3>
-                <p>Memilih elemen berdasarkan atribut ID (harus unik):</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>#header {
-    background-color: navy;
-    color: white;
-    padding: 20px;
-}
-
-#main-content {
-    margin: 20px 0;
-}
-
-#footer {
-    background-color: gray;
-    text-align: center;
-}</code>
-                </div>
-
-                <div class="demo-section">
-                    <div class="demo-title">🆔 Demo ID Selector</div>
-                    <div class="selector-demo">
-                        <div id="unique-element" class="demo-element">Element dengan ID selector</div>
-                    </div>
-                </div>
-
-                <h3>5. Attribute Selector</h3>
-                <p>Memilih elemen berdasarkan atribut yang dimiliki:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Elemen dengan atribut tertentu */
-[type] {
-    border: 2px solid blue;
-}
-
-/* Elemen dengan nilai atribut spesifik */
-[type="text"] {
-    background-color: white;
-}
-
-/* Elemen dengan nilai atribut yang mengandung kata tertentu */
-[class*="btn"] {
-    cursor: pointer;
-}
-
-/* Elemen dengan nilai atribut yang diawali kata tertentu */
-[class^="nav"] {
-    display: flex;
-}
-
-/* Elemen dengan nilai atribut yang diakhiri kata tertentu */
-[class$="active"] {
-    font-weight: bold;
-}</code>
-                </div>
-            </section>
-
-            <section id="selector-kombinasi">
-                <h2>🔗 Selector Kombinasi</h2>
-
-                <p>Selector kombinasi memungkinkan kita memilih elemen berdasarkan hubungan mereka dengan elemen lain:</p>
-
-                <h3>1. Descendant Selector (Spasi)</h3>
-                <p>Memilih semua elemen yang merupakan keturunan dari elemen tertentu:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Semua p di dalam div */
-div p {
-    color: blue;
-}
-
-/* Semua a di dalam nav */
-nav a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Semua li di dalam ul yang ada di dalam nav */
-nav ul li {
-    list-style: none;
-    display: inline-block;
-}</code>
-                </div>
-
-                <h3>2. Child Selector (>)</h3>
-                <p>Memilih elemen yang merupakan anak langsung dari elemen tertentu:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Hanya p yang merupakan anak langsung div */
-div > p {
-    margin-bottom: 10px;
-}
-
-/* Hanya li yang merupakan anak langsung ul */
-ul > li {
-    padding: 5px 0;
-}
-
-/* Hanya img yang merupakan anak langsung article */
-article > img {
-    width: 100%;
-    height: auto;
-}</code>
-                </div>
-
-                <div class="demo-section">
-                    <div class="demo-title">👨‍👩‍👧‍👦 Demo Child vs Descendant Selector</div>
-                    <div class="selector-demo parent-demo">
-                        <div class="demo-element child direct-child">Direct Child</div>
-                        <div>
-                            <div class="demo-element child">Nested Child</div>
+                    <div class="demo-title">📦 Visualisasi Box Model</div>
+                    <div class="margin-demo">
+                        <div class="box-model margin-20">
+                            <div style="background: #4ecdc4; padding: 10px; border: 2px solid #f38ba8;">
+                                CONTENT
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <h3>3. Adjacent Sibling Selector (+)</h3>
-                <p>Memilih elemen yang langsung mengikuti elemen tertentu:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* p yang langsung setelah h2 */
-h2 + p {
-    font-weight: bold;
-    margin-top: 0;
-}
-
-/* img yang langsung setelah h1 */
-h1 + img {
-    margin-top: 20px;
-}
-
-/* div yang langsung setelah form */
-form + div {
-    padding-top: 10px;
-}</code>
-                </div>
-
-                <h3>4. General Sibling Selector (~)</h3>
-                <p>Memilih semua elemen sibling yang mengikuti elemen tertentu:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Semua p yang mengikuti h2 di level yang sama */
-h2 ~ p {
-    color: gray;
-}
-
-/* Semua div yang mengikuti header */
-header ~ div {
-    margin-top: 20px;
-}
-
-/* Semua input yang mengikuti label */
-label ~ input {
-    margin-left: 10px;
-}</code>
-                </div>
-
-                <h3>5. Multiple Selector (Comma)</h3>
-                <p>Memilih beberapa elemen sekaligus dengan aturan yang sama:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Styling yang sama untuk h1, h2, h3 */
-h1, h2, h3 {
-    font-family: 'Arial', sans-serif;
-    margin-bottom: 15px;
-}
-
-/* Styling untuk semua elemen input */
-input, textarea, select {
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 4px;
-}
-
-/* Styling untuk class tertentu */
-.btn, .button, .submit {
-    background-color: blue;
-    color: white;
-    padding: 10px 15px;
-}</code>
-                </div>
             </section>
 
-            <section id="pseudo-class">
-                <h2>🎭 Pseudo-class Selectors</h2>
+            <section id="sintaks-dasar">
+                <h2>📐 Sintaks Dasar Margin</h2>
 
-                <p>Pseudo-class selector memungkinkan kita memilih elemen berdasarkan state atau posisi mereka:</p>
+                <p>Margin dapat ditulis dengan berbagai cara dalam CSS:</p>
 
-                <h3>1. Interactive Pseudo-classes</h3>
+                <h3>1. Margin untuk Semua Sisi</h3>
                 <div class="code-block" data-language="CSS">
-                    <code>/* Hover effect */
-a:hover {
-    color: red;
-    text-decoration: underline;
+                    <code>/* Margin 20px untuk semua sisi */
+.element {
+    margin: 20px;
 }
 
-/* Focus state untuk form elements */
-input:focus {
-    border-color: blue;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0,0,255,0.3);
+/* Margin 0 untuk menghilangkan jarak */
+.no-margin {
+    margin: 0;
 }
 
-/* Active state */
-button:active {
-    transform: scale(0.98);
+/* Margin dengan unit yang berbeda */
+.percentage-margin {
+    margin: 5%;
 }
 
-/* Visited links */
-a:visited {
-    color: purple;
+.rem-margin {
+    margin: 1.5rem;
 }</code>
                 </div>
 
-                <div class="interactive-demo">
-                    <div class="demo-title">🖱️ Interactive Demo</div>
-                    <div class="demo-controls">
-                        <button class="demo-btn" onmouseover="this.style.background='#ff6b6b'" onmouseout="this.style.background='var(--gradient-start)'">Hover Me</button>
-                        <input type="text" placeholder="Focus me" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                    </div>
-                </div>
-
-                <h3>2. Structural Pseudo-classes</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* First child */
-li:first-child {
-    font-weight: bold;
-}
-
-/* Last child */
-li:last-child {
-    border-bottom: none;
-}
-
-/* Nth child - genap */
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-/* Nth child - ganjil */
-tr:nth-child(odd) {
-    background-color: white;
-}
-
-/* Nth child - pattern */
-li:nth-child(3n) {
-    color: red; /* setiap kelipatan 3 */
-}
-
-/* Only child */
-p:only-child {
-    text-align: center;
-}
-
-/* Empty elements */
-div:empty {
-    display: none;
-}</code>
-                </div>
-
-                <h3>3. Form Pseudo-classes</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Input yang diperlukan */
-input:required {
-    border-left: 3px solid red;
-}
-
-/* Input yang valid */
-input:valid {
-    border-left: 3px solid green;
-}
-
-/* Input yang tidak valid */
-input:invalid {
-    border-left: 3px solid red;
-}
-
-/* Checkbox yang dicentang */
-input:checked {
-    transform: scale(1.1);
-}
-
-/* Input yang disabled */
-input:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}</code>
-                </div>
-
-                <h3>4. Negation Pseudo-class</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Semua p kecuali yang memiliki class special */
-p:not(.special) {
-    color: gray;
-}
-
-/* Semua input kecuali yang bertipe submit */
-input:not([type="submit"]) {
-    margin-bottom: 10px;
-}
-
-/* Semua div kecuali yang pertama */
-div:not(:first-child) {
-    margin-top: 20px;
-}</code>
-                </div>
-            </section>
-
-            <section id="pseudo-element">
-                <h2>🎨 Pseudo-element Selectors</h2>
-
-                <p>Pseudo-element memungkinkan kita menambahkan styling pada bagian tertentu dari elemen:</p>
-
-                <h3>1. ::before dan ::after</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Menambahkan konten sebelum elemen */
-h2::before {
-    content: "📋 ";
-    color: blue;
-}
-
-/* Menambahkan konten setelah elemen */
-.external-link::after {
-    content: " 🔗";
-    font-size: 0.8em;
-}
-
-/* Membuat decorative elements */
-.quote::before {
-    content: """;
-    font-size: 2em;
-    color: #ccc;
-    position: absolute;
-    left: -20px;
-    top: -10px;
-}
-
-.quote::after {
-    content: """;
-    font-size: 2em;
-    color: #ccc;
-}</code>
-                </div>
-
-                <h3>2. ::first-letter dan ::first-line</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Styling huruf pertama */
-p::first-letter {
-    font-size: 3em;
-    float: left;
-    line-height: 0.8;
-    margin-right: 5px;
-    color: #ff6b6b;
-}
-
-/* Styling baris pertama */
-p::first-line {
-    font-weight: bold;
-    color: navy;
-}</code>
-                </div>
-
-                <h3>3. ::selection</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Styling teks yang diseleksi */
-::selection {
-    background-color: #667eea;
-    color: white;
-}
-
-/* Styling selection untuk Firefox */
-::-moz-selection {
-    background-color: #667eea;
-    color: white;
-}</code>
-                </div>
-
-                <h3>4. ::placeholder</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Styling placeholder text */
-input::placeholder {
-    color: #999;
-    font-style: italic;
-    opacity: 0.7;
-}
-
-textarea::placeholder {
-    color: #666;
-    font-family: serif;
-}</code>
-                </div>
-
-                <div class="demo-section">
-                    <div class="demo-title">✨ Demo Pseudo-elements</div>
-                    <div class="selector-demo">
-                        <p class="demo-element" style="position: relative;">
-                            <span style="font-size: 2em; float: left; margin-right: 5px; color: #ff6b6b;">L</span>
-                            orem ipsum dolor sit amet, consectetur adipiscing elit. Seleksi teks ini untuk melihat efek ::selection!
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="specificity">
-                <h2>⚖️ Specificity dan Priority</h2>
-
-                <p>Specificity menentukan aturan CSS mana yang akan diterapkan ketika ada konflik. Semakin tinggi specificity, semakin prioritas aturan tersebut.</p>
-
-                <h3>🏆 Urutan Specificity (dari tertinggi ke terendah):</h3>
-                <ol>
-                    <li><strong>Inline styles</strong> - style="..." (1000 poin)</li>
-                    <li><strong>IDs</strong> - #myId (100 poin)</li>
-                    <li><strong>Classes, attributes, pseudo-classes</strong> - .myClass, [type="text"], :hover (10 poin)</li>
-                    <li><strong>Elements dan pseudo-elements</strong> - div, p, ::before (1 poin)</li>
-                </ol>
-
-                <table class="specificity-table">
+                <h3>2. Nilai-nilai yang Dapat Digunakan</h3>
+                <table class="margin-table">
                     <thead>
                         <tr>
-                            <th>Selector</th>
-                            <th>Inline</th>
-                            <th>ID</th>
-                            <th>Class</th>
-                            <th>Element</th>
-                            <th>Total</th>
+                            <th>Nilai</th>
+                            <th>Deskripsi</th>
+                            <th>Contoh</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>p</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0001</td>
+                            <td>auto</td>
+                            <td>Browser menghitung margin secara otomatis</td>
+                            <td>margin: auto;</td>
                         </tr>
                         <tr>
-                            <td>.highlight</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0010</td>
+                            <td>length</td>
+                            <td>Ukuran tetap (px, em, rem, etc.)</td>
+                            <td>margin: 10px;</td>
                         </tr>
                         <tr>
-                            <td>#header</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0100</td>
+                            <td>%</td>
+                            <td>Persentase dari lebar parent element</td>
+                            <td>margin: 5%;</td>
                         </tr>
                         <tr>
-                            <td>div.container p</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>0012</td>
+                            <td>inherit</td>
+                            <td>Mewarisi nilai dari parent element</td>
+                            <td>margin: inherit;</td>
                         </tr>
                         <tr>
-                            <td>#nav .menu li a:hover</td>
-                            <td>0</td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>0122</td>
+                            <td>initial</td>
+                            <td>Menggunakan nilai default</td>
+                            <td>margin: initial;</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <h3>⚡ !important Declaration</h3>
-                <p>Deklarasi !important akan mengoverride semua aturan lain, terlepas dari specificity:</p>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Aturan normal */
-p {
-    color: blue;
-}
-
-/* Aturan dengan specificity lebih tinggi */
-#content p {
-    color: red;
-}
-
-/* !important akan mengoverride semuanya */
-p {
-    color: green !important;
-}
-
-/* Hanya !important lain yang bisa mengoverride */
-#content p {
-    color: yellow !important;
-}</code>
-                </div>
-
-                <h3>💡 Tips Mengelola Specificity:</h3>
-                <ul>
-                    <li>Hindari penggunaan !important kecuali benar-benar diperlukan</li>
-                    <li>Gunakan class selector daripada ID selector untuk styling</li>
-                    <li>Buat selector sesederhana mungkin</li>
-                    <li>Gunakan metodologi seperti BEM untuk menghindari konflik</li>
-                    <li>Atur CSS dari general ke specific</li>
-                </ul>
-
                 <div class="demo-section">
-                    <div class="demo-title">🎯 Demo Specificity</div>
-                    <div class="selector-demo">
-                        <p class="demo-element special highlight" style="background: #ffd93d !important;">
-                            Element ini memiliki multiple classes dan inline style dengan !important
-                        </p>
+                    <div class="demo-title">🎨 Demo Margin Dasar</div>
+                    <div class="margin-demo">
+                        <div class="demo-box margin-10">Margin 10px semua sisi</div>
+                        <div class="demo-box margin-20">Margin 20px semua sisi</div>
                     </div>
                 </div>
             </section>
 
-            <section id="tips">
-                <h2>💎 Tips dan Best Practices</h2>
+            <section id="margin-individual">
+                <h2>🎯 Mengatur Margin Individual</h2>
 
-                <h3>1. Organisasi CSS yang Baik</h3>
+                <p>Setiap sisi elemen dapat memiliki nilai margin yang berbeda:</p>
+
+                <h3>1. Margin untuk Setiap Sisi</h3>
                 <div class="code-block" data-language="CSS">
-                    <code>/* 1. Reset/Normalize */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+                    <code>/* Margin individual */
+.element {
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    margin-left: 25px;
 }
 
-/* 2. Base/Typography */
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
+/* Contoh penggunaan praktis */
+.header {
+    margin-bottom: 30px; /* Jarak dengan elemen di bawahnya */
 }
 
-/* 3. Layout */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.sidebar {
+    margin-right: 20px; /* Jarak dengan konten utama */
 }
 
-/* 4. Components */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-/* 5. Utilities */
-.text-center { text-align: center; }
-.hidden { display: none; }
-.clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+.footer {
+    margin-top: 50px; /* Jarak dengan konten di atasnya */
 }</code>
                 </div>
 
-                <h3>2. Metodologi BEM (Block Element Modifier)</h3>
+                <h3>2. Kombinasi Margin Individual</h3>
                 <div class="code-block" data-language="CSS">
-                    <code>/* Block */
+                    <code>/* Hanya margin vertikal */
+.vertical-spacing {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Hanya margin horizontal */
+.horizontal-spacing {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Margin asimetris untuk desain khusus */
 .card {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* Element */
-.card__title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.card__content {
-    color: #666;
-    line-height: 1.6;
-}
-
-.card__button {
-    background: blue;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-}
-
-/* Modifier */
-.card--featured {
-    border: 2px solid gold;
-    background: #fffbf0;
-}
-
-.card__button--large {
-    padding: 15px 25px;
-    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 0;
+    margin-right: 20px;
 }</code>
+                </div>
+
+                <div class="demo-section">
+                    <div class="demo-title">📏 Demo Margin Individual</div>
+                    <div class="margin-demo">
+                        <div class="demo-box margin-top-30">Margin Top 30px</div>
+                        <div class="demo-box margin-horizontal">Margin Horizontal 40px</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="margin-shorthand">
+                <h2>⚡ Shorthand Margin Properties</h2>
+
+                <p>Shorthand properties memungkinkan kita mengatur margin untuk beberapa sisi sekaligus dalam satu deklarasi:</p>
+
+                <h3>1. Margin dengan 4 Nilai</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* 4 nilai: top right bottom left (searah jarum jam) */
+.element {
+    margin: 10px 15px 20px 25px;
+    /* 
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    */
+}</code>
+                </div>
+
+                <h3>2. Margin dengan 3 Nilai</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* 3 nilai: top horizontal bottom */
+.element {
+    margin: 10px 15px 20px;
+    /* 
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    */
+}</code>
+                </div>
+
+                <h3>3. Margin dengan 2 Nilai</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* 2 nilai: vertical horizontal */
+.element {
+    margin: 10px 20px;
+    /* 
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    */
+}
+
+/* Contoh praktis */
+.card {
+    margin: 20px 0; /* 20px vertikal, 0 horizontal */
+}
+
+.button {
+    margin: 10px 15px; /* 10px vertikal, 15px horizontal */
+}</code>
+                </div>
+
+                <h3>4. Margin dengan 1 Nilai</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* 1 nilai: semua sisi sama */
+.element {
+    margin: 15px;
+    /* 
+    margin-top: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    */
+}</code>
+                </div>
+
+                <div class="interactive-demo">
+                    <div class="demo-title">🎮 Interactive Margin Demo</div>
+                    <div class="demo-controls">
+                        <button class="demo-btn" onclick="changeMargin('10px')">10px Semua Sisi</button>
+                        <button class="demo-btn" onclick="changeMargin('20px 0')">20px Vertikal</button>
+                        <button class="demo-btn" onclick="changeMargin('10px 20px 30px')">10px 20px 30px</button>
+                        <button class="demo-btn" onclick="changeMargin('5px 10px 15px 20px')">5px 10px 15px 20px</button>
+                    </div>
+                    <div id="interactive-box" class="demo-box" style="margin: 10px;">
+                        Interactive Box - Klik tombol untuk mengubah margin
+                    </div>
+                </div>
+            </section>
+
+            <section id="margin-auto">
+                <h2>🎯 Margin Auto untuk Centering</h2>
+
+                <p>Margin auto adalah teknik yang sangat berguna untuk memusatkan elemen secara horizontal:</p>
+
+                <h3>1. Centering Horizontal</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Memusatkan elemen secara horizontal */
+.center-element {
+    width: 300px; /* Lebar harus didefinisikan */
+    margin: 0 auto; /* 0 vertikal, auto horizontal */
+}
+
+/* Alternatif penulisan */
+.center-alternative {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Untuk container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Memusatkan container */
+    padding: 0 20px;
+}</code>
+                </div>
+
+                <h3>2. Kombinasi dengan Margin Vertikal</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Centering dengan margin vertikal */
+.card {
+    width: 400px;
+    margin: 50px auto; /* 50px vertikal, auto horizontal */
+}
+
+/* Centering dengan margin bottom saja */
+.header {
+    width: 80%;
+    margin: 0 auto 40px auto;
+}
+
+/* Responsive centering */
+.responsive-box {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+}</code>
+                </div>
+
+                <div class="demo-section">
+                    <div class="demo-title">🎨 Demo Margin Auto</div>
+                    <div class="margin-demo">
+                        <div class="demo-box margin-auto">Box dengan margin: 0 auto (centered)</div>
+                    </div>
+                </div>
+
+                <h3>3. Margin Auto Tidak Bekerja Untuk:</h3>
+                <ul>
+                    <li><strong>Elemen inline:</strong> Harus diubah ke block atau inline-block</li>
+                    <li><strong>Elemen tanpa width:</strong> Lebar harus didefinisikan</li>
+                    <li><strong>Centering vertikal:</strong> Margin auto tidak bekerja untuk vertikal</li>
+                    <li><strong>Float elements:</strong> Elemen yang di-float tidak bisa dicentering dengan margin auto</li>
+                </ul>
+
+                <div class="code-block" data-language="CSS">
+                    <code>/* Contoh yang TIDAK akan bekerja */
+span {
+    margin: 0 auto; /* Tidak bekerja karena span adalah inline */
+}
+
+/* Solusinya */
+span {
+    display: block; /* atau inline-block */
+    width: 200px;
+    margin: 0 auto;
+}</code>
+                </div>
+            </section>
+
+            <section id="margin-collapse">
+                <h2>🔄 Margin Collapse</h2>
+
+                <p>Margin collapse adalah fenomena dimana margin vertikal dari dua elemen yang berdekatan bergabung menjadi satu:</p>
+
+                <h3>1. Apa itu Margin Collapse?</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Dua elemen dengan margin vertikal */
+.element1 {
+    margin-bottom: 30px;
+}
+
+.element2 {
+    margin-top: 20px;
+}
+
+/* Hasilnya BUKAN 50px, tetapi 30px (yang terbesar) */</code>
                 </div>
 
                 <div class="code-block" data-language="HTML">
-                    <code>&lt;div class="card card--featured"&gt;
-    &lt;h2 class="card__title"&gt;Featured Article&lt;/h2&gt;
-    &lt;p class="card__content"&gt;This is a featured article with special styling.&lt;/p&gt;
-    &lt;button class="card__button card__button--large"&gt;Read More&lt;/button&gt;
-&lt;/div&gt;</code>
+                    <code>&lt;div class="element1"&gt;Element 1&lt;/div&gt;
+&lt;div class="element2"&gt;Element 2&lt;/div&gt;
+&lt;!-- Jarak antara kedua div adalah 30px, bukan 50px --&gt;</code>
                 </div>
 
-                <h3>3. Performance Tips</h3>
+                <h3>2. Kapan Margin Collapse Terjadi?</h3>
                 <ul>
-                    <li><strong>Hindari selector yang terlalu kompleks:</strong></li>
+                    <li><strong>Adjacent siblings:</strong> Elemen yang bersebelahan secara vertikal</li>
+                    <li><strong>Parent-child:</strong> Margin top anak dengan margin top parent</li>
+                    <li><strong>Empty blocks:</strong> Margin top dan bottom dari elemen kosong</li>
                 </ul>
 
                 <div class="code-block" data-language="CSS">
-                    <code>/* Buruk - terlalu spesifik dan lambat */
-body div.container section.content article.post p.paragraph span.highlight {
-    color: red;
+                    <code>/* Parent-child margin collapse */
+.parent {
+    margin-top: 40px;
 }
 
-/* Baik - sederhana dan cepat */
-.highlight {
-    color: red;
+.child {
+    margin-top: 20px; /* Akan collapse dengan parent */
+}
+
+/* Hasil: margin total adalah 40px, bukan 60px */</code>
+                </div>
+
+                <h3>3. Cara Mencegah Margin Collapse</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Menggunakan padding sebagai alternatif */
+.parent {
+    padding-top: 20px;
+    /* margin-top: 20px; */
+}
+
+/* Menggunakan border */
+.parent {
+    border-top: 1px solid transparent;
+    margin-top: 20px;
+}
+
+/* Menggunakan flexbox atau grid */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Tidak ada margin collapse */
+}
+
+/* Menggunakan overflow */
+.parent {
+    overflow: hidden; /* Menciptakan new block formatting context */
 }</code>
                 </div>
 
+                <div class="demo-section">
+                    <div class="demo-title">🔄 Demo Margin Collapse</div>
+                    <div class="margin-demo">
+                        <div class="demo-box" style="margin-bottom: 30px; background: #ff9a9e;">
+                            Element 1 - margin-bottom: 30px
+                        </div>
+                        <div class="demo-box" style="margin-top: 20px; background: #a8e6cf;">
+                            Element 2 - margin-top: 20px<br>
+                            <small>Actual spacing: 30px (bukan 50px)</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="margin-negatif">
+                <h2>➖ Margin Negatif</h2>
+
+                <p>Margin negatif adalah teknik yang memungkinkan elemen untuk "tumpang tindih" atau bergerak ke arah yang berlawanan:</p>
+
+                <h3>1. Konsep Margin Negatif</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Margin negatif menggerakkan elemen ke arah berlawanan */
+.overlap-element {
+    margin-top: -20px; /* Bergerak ke atas */
+    margin-left: -10px; /* Bergerak ke kiri */
+}
+
+/* Margin negatif untuk overlap design */
+.card-overlap {
+    margin-top: -50px; /* Overlap dengan elemen sebelumnya */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}</code>
+                </div>
+
+                <h3>2. Penggunaan Praktis Margin Negatif</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Membuat layout yang menarik */
+.hero-section {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    height: 400px;
+}
+
+.content-card {
+    margin-top: -100px; /* Card mengambang di atas hero */
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Mengatasi container constraints */
+.full-width-in-container {
+    margin-left: -20px;
+    margin-right: -20px; /* Keluar dari container padding */
+}
+
+/* Membuat sticky sidebar effect */
+.sidebar {
+    margin-top: -100px;
+    position: relative;
+    z-index: 10;
+}</code>
+                </div>
+
+                <h3>3. Peringatan Penggunaan Margin Negatif</h3>
                 <ul>
-                    <li><strong>Gunakan ID untuk JavaScript, bukan styling:</strong></li>
-                </ul>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Untuk JavaScript */
-#modal-trigger { /* hanya untuk JS */ }
-
-/* Untuk styling */
-.modal-button {
-    background: blue;
-    color: white;
-}</code>
-                </div>
-
-                <h3>4. Responsive Design dengan Selectors</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Mobile First Approach */
-.nav-menu {
-    display: none;
-}
-
-.nav-toggle {
-    display: block;
-}
-
-/* Tablet dan Desktop */
-@media (min-width: 768px) {
-    .nav-menu {
-        display: flex;
-    }
-    
-    .nav-toggle {
-        display: none;
-    }
-    
-    .nav-menu li {
-        margin-right: 20px;
-    }
-    
-    .nav-menu li:last-child {
-        margin-right: 0;
-    }
-}</code>
-                </div>
-
-                <h3>5. Accessibility dengan Selectors</h3>
-                <div class="code-block" data-language="CSS">
-                    <code>/* Focus indicators yang jelas */
-a:focus,
-button:focus,
-input:focus {
-    outline: 2px solid #4A90E2;
-    outline-offset: 2px;
-}
-
-/* Skip links */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: #000;
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    transition: top 0.3s;
-}
-
-.skip-link:focus {
-    top: 6px;
-}
-
-/* Responsive text */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}</code>
-                </div>
-
-                <h3>6. Debugging CSS Selectors</h3>
-                <p>Tools dan teknik untuk debugging:</p>
-                <ul>
-                    <li>Gunakan browser DevTools untuk inspect elements</li>
-                    <li>Tambahkan border sementara untuk melihat element boundaries</li>
-                    <li>Gunakan outline untuk debugging tanpa mempengaruhi layout</li>
-                    <li>Manfaatkan CSS validator untuk menangkap syntax errors</li>
-                </ul>
-
-                <div class="code-block" data-language="CSS">
-                    <code>/* Debugging helper */
-* {
-    outline: 1px solid red !important;
-}
-
-/* Atau lebih spesifik */
-.debug * {
-    background: rgba(255, 0, 0, 0.1) !important;
-    border: 1px solid red !important;
-}</code>
-                </div>
-
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/dcCQQblm_ds" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <p class="image-caption">Advanced CSS Selectors dan tips praktis</p>
-
-                <h3>📚 Rangkuman Best Practices:</h3>
-                <ul>
-                    <li>Gunakan class untuk styling, ID untuk JavaScript</li>
-                    <li>Buat selector sesederhana mungkin</li>
-                    <li>Hindari !important kecuali benar-benar diperlukan</li>
-                    <li>Organisir CSS dari general ke specific</li>
-                    <li>Gunakan metodologi seperti BEM untuk maintainability</li>
-                    <li>Pertimbangkan performance dengan selector yang efisien</li>
-                    <li>Test di berbagai browser dan device</li>
-                    <li>Selalu pikirkan accessibility</li>
+                    <li><strong>Layout breaking:</strong> Bisa merusak flow layout jika berlebihan</li>
+                    <li><strong>Responsive issues:</strong> Mungkin tidak bekerja baik di layar kecil</li>
+                    <li><strong>Accessibility:</strong> Bisa membuat konten overlap dan sulit dibaca</li>
+                    <li><strong>Debugging:</strong> Lebih sulit untuk di-debug dan maintain</li>
                 </ul>
 
                 <div class="demo-section">
-                    <div class="demo-title">🎉 Selamat! Anda sudah menguasai CSS Selectors</div>
-                    <div class="selector-demo">
-                        <div class="demo-element" style="background: linear-gradient(45deg, #667eea, #764ba2); font-size: 1.2em;">
-                            Happy Coding dengan CSS Selectors! 🚀
+                    <div class="demo-title">➖ Demo Margin Negatif</div>
+                    <div class="margin-demo">
+                        <div class="demo-box" style="background: #667eea;">Base Element</div>
+                        <div class="demo-box margin-negative" style="background: #ff6b6b; position: relative; z-index: 5;">
+                            Margin Negatif -10px (overlap)
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tips-praktis">
+                <h2>💡 Tips dan Best Practices</h2>
+
+                <h3>1. Consistency dalam Spacing</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Gunakan spacing system yang konsisten */
+:root {
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+}
+
+/* Terapkan dalam margin */
+.card {
+    margin-bottom: var(--spacing-md);
+}
+
+.section {
+    margin: var(--spacing-xl) 0;
+}
+
+.button {
+    margin: var(--spacing-xs) var(--spacing-sm);
+}</code>
+                </div>
+
+                <h3>2. Responsive Margin</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Margin yang responsif */
+.container {
+    margin: 0 auto;
+    padding: 0 20px; /* Gunakan padding untuk spacing di edge */
+}
+
+/* Margin berbeda untuk ukuran layar berbeda */
+.hero-section {
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+    .hero-section {
+        margin-bottom: 80px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-section {
+        margin-bottom: 120px;
+    }
+}
+
+/* Menggunakan clamp() untuk fluid spacing */
+.section {
+    margin: clamp(2rem, 5vw, 5rem) 0;
+}</code>
+                </div>
+
+                <h3>3. Margin vs Padding - Kapan Menggunakan Apa?</h3>
+                <table class="margin-table">
+                    <thead>
+                        <tr>
+                            <th>Situasi</th>
+                            <th>Gunakan</th>
+                            <th>Alasan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jarak antar elemen</td>
+                            <td>Margin</td>
+                            <td>Untuk spacing eksternal</td>
+                        </tr>
+                        <tr>
+                            <td>Ruang dalam elemen</td>
+                            <td>Padding</td>
+                            <td>Untuk spacing internal</td>
+                        </tr>
+                        <tr>
+                            <td>Centering elemen</td>
+                            <td>Margin auto</td>
+                            <td>Teknik standar centering</td>
+                        </tr>
+                        <tr>
+                            <td>Clickable area</td>
+                            <td>Padding</td>
+                            <td>Padding termasuk clickable area</td>
+                        </tr>
+                        <tr>
+                            <td>Background color</td>
+                            <td>Padding</td>
+                            <td>Background tidak termasuk margin</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>4. Modern CSS Alternatives</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Flexbox untuk spacing yang lebih predictable */
+.flex-container {
+    display: flex;
+    gap: 20px; /* Lebih baik dari margin untuk flex items */
+    flex-direction: column;
+}
+
+/* Grid untuk layout kompleks */
+.grid-container {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* CSS Custom Properties untuk dynamic spacing */
+.component {
+    --margin-size: 20px;
+    margin: var(--margin-size) 0;
+}
+
+.component--large {
+    --margin-size: 40px;
+}</code>
+                </div>
+
+                <h3>5. Debugging Margin Issues</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Temporary debugging styles */
+.debug * {
+    outline: 1px solid red !important;
+    outline-offset: -1px;
+}
+
+/* Visualisasi margin dengan border */
+.debug-margin {
+    border: 1px dashed blue !important;
+    background-color: rgba(0, 0, 255, 0.1) !important;
+}
+
+/* Browser developer tools */
+/* Gunakan Computed styles untuk melihat margin yang diterapkan */
+/* Gunakan Box Model tab untuk visualisasi */</code>
+                </div>
+
+                <h3>6. Accessibility Considerations</h3>
+                <div class="code-block" data-language="CSS">
+                    <code>/* Pastikan spacing cukup untuk touch targets */
+.button {
+    margin: 8px 0; /* Minimal spacing untuk touch */
+    padding: 12px 16px; /* Minimal 44px touch target */
+}
+
+/* Responsive spacing untuk readability */
+p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+/* Spacing yang proportional */
+h1 { margin: 0 0 0.5em 0; }
+h2 { margin: 1.5em 0 0.5em 0; }
+h3 { margin: 1.2em 0 0.3em 0; }</code>
+                </div>
+
+                <div class="interactive-demo">
+                    <div class="demo-title">🎮 Interactive Best Practices Demo</div>
+                    <div class="demo-controls">
+                        <button class="demo-btn" onclick="showSpacing('consistent')">Consistent Spacing</button>
+                        <button class="demo-btn" onclick="showSpacing('responsive')">Responsive Margin</button>
+                        <button class="demo-btn" onclick="showSpacing('modern')">Modern Alternatives</button>
+                    </div>
+                    <div id="spacing-demo" class="margin-demo">
+                        <div class="demo-box" style="margin: 16px 0;">
+                            Klik tombol di atas untuk melihat berbagai teknik spacing
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/EhbZGV2dqZ4" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p class="image-caption">Advanced CSS Margin techniques dan tips praktis</p>
+
+                <h3>📚 Rangkuman Best Practices:</h3>
+                <ul>
+                    <li>Gunakan spacing system yang konsisten</li>
+                    <li>Pertimbangkan margin collapse dalam layout vertical</li>
+                    <li>Gunakan margin auto untuk centering horizontal</li>
+                    <li>Hindari margin negatif kecuali untuk desain khusus</li>
+                    <li>Pilih antara margin dan padding sesuai kebutuhan</li>
+                    <li>Pertimbangkan modern alternatives seperti flexbox gap</li>
+                    <li>Test responsiveness di berbagai ukuran layar</li>
+                    <li>Selalu pikirkan accessibility dan usability</li>
+                    <li>Gunakan CSS custom properties untuk maintainability</li>
+                    <li>Debug dengan browser developer tools</li>
+                </ul>
+
+                <div class="demo-section">
+                    <div class="demo-title">🎉 Selamat! Anda sudah menguasai CSS Margin</div>
+                    <div class="margin-demo">
+                        <div class="demo-box" style="background: linear-gradient(45deg, #667eea, #764ba2); font-size: 1.2em; margin: 20px auto; max-width: 400px;">
+                            Sekarang Anda bisa mengatur spacing dengan sempurna! 🚀
                         </div>
                     </div>
                 </div>
@@ -1330,88 +1215,108 @@ input:focus {
     </div>
 
     <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement; // <html>
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        themeToggle.classList.add('animasi');
+        setTimeout(() => {
+            themeToggle.classList.remove('animasi');
+        }, 500);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+
+    // Smooth scrolling for table of contents
+    document.querySelectorAll('.toc a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
             
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            }
-        }
-
-        // Smooth scrolling for table of contents
-        document.querySelectorAll('.toc a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Interactive demo functionality
-        function highlightSelector(selectorType) {
-            // Remove previous highlights
-            document.querySelectorAll('.demo-element').forEach(el => {
-                el.classList.remove('highlight');
-            });
-            
-            // Add highlight based on selector type
-            switch(selectorType) {
-                case 'element':
-                    document.querySelectorAll('p.demo-element').forEach(el => {
-                        el.classList.add('highlight');
-                    });
-                    break;
-                case 'class':
-                    document.querySelectorAll('.special').forEach(el => {
-                        el.classList.add('highlight');
-                    });
-                    break;
-                case 'id':
-                    const idElement = document.getElementById('unique-element');
-                    if (idElement) {
-                        idElement.classList.add('highlight');
-                    }
-                    break;
-            }
-        }
-
-        // Add interactive behavior to demo elements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to demo elements
-            document.querySelectorAll('.demo-element').forEach(element => {
-                element.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.02)';
-                    this.style.transition = 'transform 0.3s ease';
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-                
-                element.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                });
-            });
-
-            // Initialize theme based on user preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                document.querySelector('.theme-toggle').textContent = '☀️';
             }
         });
+    });
+
+    // Interactive margin demo
+    function changeMargin(marginValue) {
+        const box = document.getElementById('interactive-box');
+        box.style.margin = marginValue;
+        
+        // Update button states
+        document.querySelectorAll('.demo-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Update box text
+        box.textContent = `margin: ${marginValue}`;
+    }
+
+    // Spacing demo
+    function showSpacing(type) {
+        const demo = document.getElementById('spacing-demo');
+        
+        // Reset
+        demo.innerHTML = '';
+        
+        switch(type) {
+            case 'consistent':
+                demo.innerHTML = `
+                    <div class="demo-box" style="margin: 8px 0;">Small spacing (8px)</div>
+                    <div class="demo-box" style="margin: 16px 0;">Medium spacing (16px)</div>
+                    <div class="demo-box" style="margin: 24px 0;">Large spacing (24px)</div>
+                `;
+                break;
+            case 'responsive':
+                demo.innerHTML = `
+                    <div class="demo-box" style="margin: clamp(10px, 3vw, 30px) 0;">
+                        Fluid margin: clamp(10px, 3vw, 30px)
+                    </div>
+                `;
+                break;
+            case 'modern':
+                demo.innerHTML = `
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div class="demo-box">Flexbox dengan gap</div>
+                        <div class="demo-box">No margin needed!</div>
+                    </div>
+                `;
+                break;
+        }
+    }
+
+    // Hover effects for demo elements
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.demo-box').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.02)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    });
     </script>
 </body>
 </html>

@@ -1,24 +1,10 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Selectors - Panduan Lengkap untuk Pemula | SigmaWebsite</title>
     <style>
-        :root {
-            /* Light mode colors */
-            --bg-primary: #f8f9fa;
-            --bg-secondary: #ffffff;
-            --text-primary: #333333;
-            --text-secondary: #555555;
-            --text-muted: #666666;
-            --border-color: #e0e0e0;
-            --shadow: rgba(0,0,0,0.1);
-            --gradient-start: #667eea;
-            --gradient-end: #764ba2;
-            --code-bg: #f4f4f4;
-        }
-
         [data-theme="dark"] {
             /* Dark mode colors */
             --bg-primary: #121212;
@@ -32,6 +18,20 @@
             --gradient-end: #764ba2;
             --code-bg: #2d2d2d;
         }
+
+        [data-theme="light"] {
+            --bg-primary: #fff;
+            --bg-secondary: #f7f7f7;
+            --text-primary: #222;
+            --text-secondary: #444;
+            --text-muted: #888;
+            --border-color: #e0e0e0;
+            --shadow: rgba(0,0,0,0.07);
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --code-bg: #f3f3f3;
+            --logo-color: #333;
+}
 
         * {
             margin: 0;
@@ -96,11 +96,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
         }
 
         .back-btn {
@@ -109,11 +110,12 @@
             padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .back-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
 
         /* Article */
@@ -432,6 +434,9 @@
                 <a href="#" class="logo">SigmaCode</a>
                 <div class="nav-right">
                     <a href="/project-2/index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
             </nav>
         </div>
     </header>
@@ -1330,21 +1335,63 @@ input:focus {
     </div>
 
     <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
+
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const root = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme') || 'dark';
+root.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+
+    themeToggle.classList.add('animasi');
+    setTimeout(() => {
+        themeToggle.classList.remove('animasi');
+    }, 500);
+});
+
+function updateThemeIcon(theme) {
+    themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+}
             
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '🌙';
-            }
+        
+            const buttons = document.querySelectorAll('#directionDemo').previousElementSibling.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        
+
+        function changeJustifyContent(value) {
+            const demo = document.getElementById('justifyDemo');
+            demo.style.justifyContent = value;
+            
+        
+            const buttons = event.target.parentElement.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
         }
 
-        // Smooth scrolling for table of contents
+        function changeAlignItems(value) {
+            const demo = document.getElementById('alignDemo');
+            demo.style.alignItems = value;
+            
+
+            const buttons = event.target.parentElement.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstButtons = document.querySelectorAll('.demo-controls .demo-btn:first-child');
+            firstButtons.forEach(btn => btn.classList.add('active'));
+        });
+
         document.querySelectorAll('.toc a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1360,14 +1407,11 @@ input:focus {
             });
         });
 
-        // Interactive demo functionality
         function highlightSelector(selectorType) {
-            // Remove previous highlights
             document.querySelectorAll('.demo-element').forEach(el => {
                 el.classList.remove('highlight');
             });
             
-            // Add highlight based on selector type
             switch(selectorType) {
                 case 'element':
                     document.querySelectorAll('p.demo-element').forEach(el => {
@@ -1388,9 +1432,8 @@ input:focus {
             }
         }
 
-        // Add interactive behavior to demo elements
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to demo elements
             document.querySelectorAll('.demo-element').forEach(element => {
                 element.addEventListener('mouseenter', function() {
                     this.style.transform = 'scale(1.02)';
@@ -1401,16 +1444,6 @@ input:focus {
                     this.style.transform = 'scale(1)';
                 });
             });
-
-            // Initialize theme based on user preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (prefersDark) {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                document.querySelector('.theme-toggle').textContent = '☀️';
-            }
         });
     </script>
 </body>

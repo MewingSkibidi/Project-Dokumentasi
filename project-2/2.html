@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,6 @@
         }
 
         [data-theme="dark"] {
-            /* Dark mode colors */
             --bg-primary: #121212;
             --bg-secondary: #1e1e1e;
             --text-primary: #ffffff;
@@ -31,6 +30,9 @@
             --gradient-start: #667eea;
             --gradient-end: #764ba2;
             --code-bg: #2d2d2d;
+        }
+        [data-theme="light"] .logo {
+            color: var(--logo-color-light);
         }
 
         * {
@@ -82,7 +84,6 @@
             align-items: center;
             gap: 1rem;
         }
-
         .theme-toggle {
             background: rgba(255,255,255,0.2);
             border: none;
@@ -96,11 +97,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .theme-toggle:hover {
             background: rgba(255,255,255,0.3);
+            transform: rotate(180deg);
         }
 
         .back-btn {
@@ -109,12 +111,14 @@
             padding: 0.5rem 1rem;
             text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .back-btn:hover {
             background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
         }
+
 
         /* Article */
         .article-container {
@@ -404,14 +408,15 @@
         }
     </style>
 </head>
-<body data-theme="dark">
     <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="/project-2/index.html" class="logo">SigmaCode</a>
+                <a href="index.html" class="logo">SigmaCode</a>
                 <div class="nav-right">
-                    <a href="/project-2/index.html" class="back-btn">Home</a>
+                    <a href="index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
                 </div>
             </nav>
         </div>
@@ -777,8 +782,6 @@
 }</code>
                 </div>
 
-              
-
                 <p><strong>Yang perlu diingat:</strong></p>
                 <ul>
                     <li>Grid cocok untuk layout 2D (baris dan kolom)</li>
@@ -788,9 +791,32 @@
                     <li>Manfaatkan DevTools untuk debugging</li>
                 </ul>
 
-               
             </section>
         </article>
     </div>
-
     <script>
+
+        
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+
+    // Ambil theme dari localStorage, default 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme); 
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+</script>
+    </body>
+</html>

@@ -1,24 +1,31 @@
- // Theme Management
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const body = document.body;
+// Theme Management
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+const body = document.body;
 
-        // Load saved theme or default to dark
-        const savedTheme = 'dark'; 
-        body.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
+// Ambil theme dari localStorage, default 'dark'
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
 
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            body.setAttribute('data-theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
+themeToggle.addEventListener('click', () => {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme); // Simpan preferensi
+    updateThemeIcon(newTheme);
 
-        function updateThemeIcon(theme) {
-            themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
-        }
+    themeToggle.classList.add('animasi');
+    setTimeout(() => {
+        themeToggle.classList.remove('animasi');
+    }, 500)
+});
+
+function updateThemeIcon(theme) {
+    themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+}
+
+// ...existing code...
 
         // Simulasi Database Backend
         const blogData = {
@@ -183,7 +190,7 @@
             "Portofolio - Website": "portofolio.html",
             "Responsive Web Design dengan CSS Media Queries": "responsive.html",
             "CSS Variables - Menggunakan Custom Properties": "variables.html",
-            "CSS Margin - Mengatur Ruang di Sekitar Elemen": "margin.html"
+            "Margin - Mengatur Ruang di Sekitar Elemen": "margin.html"
         };
 
         const postsHTML = posts.map(post => {

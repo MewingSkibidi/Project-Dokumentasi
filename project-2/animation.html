@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Animation - Panduan Lengkap untuk Pemula | SigmaWebsite</title>
-    <link rel="stylesheet" href="/project-2/css/animation-css.css">
+    <link rel="stylesheet" href="css/animation-css.css">
 </head>
 <body data-theme="dark">
     <!-- Header -->
     <header class="header">
         <div class="container">
             <nav class="nav">
-                <a href="/project-2/index.html" class="logo">SigmaCode</a>
+                <a href="index.html" class="logo">SigmaCode</a>
                 <div class="nav-right">
-                    <a href="/project-2/index.html" class="back-btn">← Home</a>
+                    <a href="index.html" class="back-btn">Home</a>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
                 </div>
             </nav>
         </div>
@@ -978,3 +980,60 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
 .sequence-item:nth-child(2) { animation-delay: 0.1s; }
 .sequence-item:nth-child(3) { animation-delay: 0.2s; }
 .sequence
+<script>
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme); 
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+        function changeFlexDirection(direction) {
+            const demo = document.getElementById('directionDemo');
+            demo.style.flexDirection = direction;
+            
+        
+            const buttons = document.querySelectorAll('#directionDemo').previousElementSibling.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function changeJustifyContent(value) {
+            const demo = document.getElementById('justifyDemo');
+            demo.style.justifyContent = value;
+            
+        
+            const buttons = event.target.parentElement.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function changeAlignItems(value) {
+            const demo = document.getElementById('alignDemo');
+            demo.style.alignItems = value;
+            
+
+            const buttons = event.target.parentElement.querySelectorAll('.demo-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstButtons = document.querySelectorAll('.demo-controls .demo-btn:first-child');
+            firstButtons.forEach(btn => btn.classList.add('active'));
+        });
+</script>
+    </body>
+    </html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigmaCode - JavaScript Tutorials</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">SigmaCode</a>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/project-2/HTML.html">HTML</a></li>
+                    <li><a href="/project-2/CSS.html">CSS</a></li>
+                    <li><a href="/project-2/JavaScript.html">JavaScript</a></li>
+                    <li><a href="/project-2/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="posts-section">
+        <h1 class="page-title">Apa itu JavaScript?</h1>
+        <div class="no-results" id="noResults" style="display: none;"></div>
+        <p>
+            <strong>JavaScript</strong> adalah bahasa pemrograman tingkat tinggi yang digunakan terutama untuk membuat halaman web menjadi interaktif dan dinamis. JavaScript berjalan di sisi klien (browser), sehingga dapat merespons aksi pengguna secara langsung tanpa perlu memuat ulang halaman.
+        </p>
+        <p>
+            JavaScript dapat digunakan untuk berbagai hal, seperti memanipulasi elemen HTML dan CSS, membuat animasi, memvalidasi form, mengambil data dari server tanpa reload (AJAX), hingga membangun aplikasi web modern (seperti SPA dengan React, Vue, atau Angular).
+        </p>
+        <p>
+            <b>Fungsi utama JavaScript:</b>
+        </p>
+        <ul>
+            <li>Membuat halaman web interaktif (misal: tombol, menu dropdown, slider, popup).</li>
+            <li>Memanipulasi dan mengubah isi dokumen HTML secara dinamis (DOM manipulation).</li>
+            <li>Memvalidasi input pengguna sebelum dikirim ke server.</li>
+            <li>Mengambil dan mengirim data ke server secara asynchronous (AJAX/fetch API).</li>
+            <li>Membuat animasi dan efek visual di halaman web.</li>
+            <li>Membangun aplikasi web modern (frontend dan backend dengan Node.js).</li>
+        </ul>
+        <p>
+            JavaScript biasanya digunakan bersama HTML dan CSS untuk membangun website yang modern dan responsif.
+        </p>
+        <br>
+        <h2>Contoh Sederhana JavaScript</h2>
+        <br>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Contoh JavaScript Sederhana&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #hasil { color: green; font-weight: bold; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Belajar JavaScript&lt;/h1&gt;
+    &lt;p&gt;Klik tombol di bawah ini untuk menampilkan pesan:&lt;/p&gt;
+    &lt;button onclick="tampilkanPesan()"&gt;Klik Saya!&lt;/button&gt;
+    &lt;p id="hasil"&gt;&lt;/p&gt;
+
+    &lt;script&gt;
+    // Fungsi untuk menampilkan pesan di halaman
+    function tampilkanPesan() {
+        document.getElementById('hasil').textContent = "Halo, kamu baru saja menekan tombol!";
+    }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </section>
+    <script>
+        // Theme toggle sinkron di semua halaman
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        root.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+
+            themeToggle.classList.add('animasi');
+            setTimeout(() => {
+                themeToggle.classList.remove('animasi');
+            }, 500);
+        });
+
+        function updateThemeIcon(theme) {
+            themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+        }
+
+        // Hamburger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigmaCode - CSS Tutorials</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">SigmaCode</a>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/project-2/HTML.html">HTML</a></li>
+                    <li><a href="/project-2/CSS.html">CSS</a></li>
+                    <li><a href="/project-2/JavaScript.html">JavaScript</a></li>
+                    <li><a href="/project-2/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<section class="posts-section">
+    <h1 class="page-title">Apa itu HTML?</h1>
+    <div class="no-results" id="noResults" style="display: none;"></div>
+    <p>
+        <strong>HTML (HyperText Markup Language)</strong> adalah bahasa markup standar untuk membuat dan menyusun halaman web. HTML digunakan untuk menentukan struktur dasar dari sebuah website, seperti judul, paragraf, gambar, tautan, tabel, form, dan elemen-elemen lainnya.
+    </p>
+    <p>
+        HTML <b>bukan bahasa pemrograman</b>, melainkan bahasa markup yang mendeskripsikan struktur dan isi dari dokumen web. Setiap elemen HTML ditulis menggunakan tag, misalnya <code>&lt;p&gt;</code> untuk paragraf, <code>&lt;h1&gt;</code> untuk judul, dan <code>&lt;a&gt;</code> untuk tautan.
+    </p>
+    <p>
+        Fungsi utama HTML:
+    </p>
+    <ul>
+        <li>Menyusun struktur halaman web (header, footer, main content, sidebar, dsb).</li>
+        <li>Menampilkan teks, gambar, video, audio, dan berbagai media lainnya.</li>
+        <li>Membuat tautan (link) antar halaman atau ke website lain.</li>
+        <li>Membuat form untuk input data pengguna.</li>
+        <li>Menyusun tabel, daftar, dan elemen-elemen lain secara terstruktur.</li>
+    </ul>
+    <p>
+        HTML biasanya digunakan bersama CSS (untuk tampilan) dan JavaScript (untuk interaktivitas).
+    </p>
+    <br>
+    <h2>Contoh Sederhana HTML</h2>
+    <br>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Contoh HTML Sederhana&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Belajar HTML&lt;/h1&gt;
+    &lt;p&gt;HTML adalah fondasi utama dalam membangun halaman web.&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;HTML digunakan untuk membuat struktur web.&lt;/li&gt;
+        &lt;li&gt;Setiap elemen ditulis menggunakan tag, misalnya &amp;lt;p&amp;gt; untuk paragraf.&lt;/li&gt;
+        &lt;li&gt;HTML mudah dipelajari dan sangat penting untuk web developer.&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;a href="https://www.w3schools.com/html/" target="_blank"&gt;Pelajari lebih lanjut tentang HTML&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</section>
+<script>
+    // Theme toggle sinkron di semua halaman
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement; // <html>
+
+    // Ambil theme dari localStorage, default 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        themeToggle.classList.add('animasi');
+        setTimeout(() => {
+            themeToggle.classList.remove('animasi');
+        }, 500);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+
+    // Hamburger menu (opsional)
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    });
+</script>
+</body>
+</html>

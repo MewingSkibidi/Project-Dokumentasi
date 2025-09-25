@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigmaCode - CSS Tutorials</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">SigmaCode</a>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                        <span id="themeIcon">😎</span>
+                    </button>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/project-2/HTML.html">HTML</a></li>
+                    <li><a href="/project-2/CSS.html">CSS</a></li>
+                    <li><a href="/project-2/java.html">JavaScript</a></li>
+                    <li><a href="/project-2/about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<section class="posts-section">
+    <h1 class="page-title">Apa itu CSS?</h1>
+    <div class="no-results" id="noResults" style="display: none;"></div>
+    <p>
+        <strong>CSS (Cascading Style Sheets)</strong> adalah bahasa yang digunakan untuk mengatur tampilan dan tata letak elemen-elemen pada halaman web. CSS memisahkan konten (HTML) dari presentasi (tampilan), sehingga desain website menjadi lebih rapi, konsisten, dan mudah diatur.
+    </p>
+    <p>
+        CSS memungkinkan kamu mengubah warna, ukuran, font, jarak, posisi, hingga membuat animasi pada elemen web. Dengan CSS, satu file style bisa digunakan untuk banyak halaman sekaligus, sehingga pengelolaan desain website menjadi lebih efisien.
+    </p>
+    <p>
+        <b>Fungsi utama CSS:</b>
+    </p>
+    <ul>
+        <li>Mengatur warna, font, dan ukuran teks.</li>
+        <li>Mengatur jarak (margin, padding) dan posisi elemen.</li>
+        <li>Membuat layout responsif yang menyesuaikan berbagai ukuran layar.</li>
+        <li>Menambahkan efek visual seperti hover, transisi, dan animasi.</li>
+        <li>Membuat tampilan website lebih menarik dan profesional.</li>
+    </ul>
+    <p>
+        CSS biasanya digunakan bersama HTML dan JavaScript untuk membangun website modern.
+    </p>
+    <br>
+    <h2>Contoh Sederhana CSS</h2>
+    <br>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Contoh CSS&lt;/title&gt;
+    &lt;style&gt;
+    body {
+        background-color: #f4f4f9;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+    }
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #555;
+    }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Belajar CSS&lt;/h1&gt;
+    &lt;p&gt;CSS membantu kita membuat halaman web menjadi lebih indah dan rapi.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</section>
+<script>
+    // Theme toggle sinkron di semua halaman
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const root = document.documentElement; // <html>
+
+    // Ambil theme dari localStorage, default 'dark'
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+
+        themeToggle.classList.add('animasi');
+        setTimeout(() => {
+            themeToggle.classList.remove('animasi');
+        }, 500);
+    });
+
+    function updateThemeIcon(theme) {
+        themeIcon.textContent = theme === 'dark' ? '😎' : '🤓';
+    }
+
+    // Hamburger menu (opsional)
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    });
+</script>
+</body>
+</html>
